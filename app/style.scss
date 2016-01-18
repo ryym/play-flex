@@ -1,0 +1,22 @@
+/* Layout */
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.layout-header {
+  padding: 10px;
+  border-bottom: 1px solid #aaa;
+}
+
+/* Playground */
+
+.playground {
+  border: 1px solid #aaa;
+  margin: 5px;
+  min-height: 500px;
+  width: 95%;
+}
