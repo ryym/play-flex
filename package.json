@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack:lint": "eslint webpack.config.js --env node",
+    "lint": "eslint app",
     "prebuild": "npm run webpack:lint",
     "predev": "npm run webpack:lint",
     "build": "webpack",
