@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router, { Route } from 'react-router';
-import Layout from './components/Layout';
-import Playground from './components/Playground';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import App from './components/App';
+import reducer from './reducers';
 
 require('./style.scss');
 
+const store = createStore(reducer);
+
 ReactDOM.render(
-  <Router>
-    <Route component={Layout}>
-      <Route path="/" component={Playground} />
-    </Route>
-  </Router>
+  <Provider store={store}>
+    <App />
+  </Provider>
   ,
   document.getElementById('app')
 );
