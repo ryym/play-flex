@@ -19,7 +19,7 @@ module.exports = {
     /* For JS */
     "curly": 2,
     "dot-notation": 2,
-    "func-style": [2, "expression"],
+    "func-style": [2, "declaration"],
     "indent": [2, 2],
     "key-spacing": [2, {
       "beforeColon": false,
