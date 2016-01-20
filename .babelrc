@@ -4,6 +4,12 @@
     "react"
   ],
   "plugins": [
-    "espower"
+    "espower",
+    ["module-alias", [
+      {
+        "src": "./app",
+        "expose": "$app"
+      }
+    ]]
   ]
 }
