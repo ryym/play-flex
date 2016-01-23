@@ -11,7 +11,7 @@ const PATH = {
 
 module.exports = {
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.react.js']
   },
 
   entry: PATH.app,
@@ -25,7 +25,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         loaders: [
           'babel',
           'eslint'
