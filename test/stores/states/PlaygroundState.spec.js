@@ -1,5 +1,6 @@
 import assert from 'power-assert';
 import FlexContainer from '$app/models/FlexContainer';
+import FlexItem from '$app/models/FlexItem';
 import PlaygroundState from '$app/stores/states/PlaygroundState';
 import { createTestState } from './_helper';
 
@@ -29,6 +30,43 @@ describe('PlaygroundState', function() {
       rootContainerId: rootId,
       containers: { [rootId]: rootContainer },
       items: {}
+    });
+  });
+
+  /** @test {PlaygroundState#addItem} */
+  describe('#addItem', () => {
+    it('does nothing if the parent container id is not found', () => {
+      const state = playground.getState();
+      playground.addItem({
+        item: new FlexItem(''),
+        containerId: '__nowhere__'
+      });
+
+      assert.deepEqual(playground.getState(), state);
+    });
+
+    it('adds a given item to items hash', () => {
+      const item = new FlexItem('new-item');
+      playground.addItem({
+        item, containerId: rootId
+      });
+
+      const items = playground.getState().items;
+      assert.deepEqual(items, {
+        [item.getId()]: item
+      });
+    });
+
+    it('adds a given item id to the parent container', () => {
+      const item = new FlexItem('new-item');
+      playground.addItem({
+        item, containerId: rootId
+      });
+
+      assert.deepEqual(
+        rootContainer.getItemIds(),
+        [item.getId()]
+      );
     });
   });
 });
