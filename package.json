@@ -10,8 +10,8 @@
     "build": "webpack",
     "dev": "webpack-dev-server",
     "test": "npm run lint && npm run test:lint && npm run test:unit",
-    "test:unit": "mocha",
-    "test:watch": "mocha --watch",
+    "test:unit": "mocha test/**/*.spec.js",
+    "test:watch": "npm run test:unit -- --watch",
     "test:lint": "eslint --env mocha test"
   },
   "keywords": [
