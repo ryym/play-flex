@@ -1,3 +1,0 @@
-// reducers
-
-export default function() {}
