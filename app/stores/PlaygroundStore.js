@@ -1,7 +1,4 @@
-/**
- * @fileoverview Create {@link PlaygroundStore} bound to PlaygroundActions.
- */
-import alt from '$app/libs/alt';
+import { alt } from '$app/libs/alt';
 import PlaygroundActions from '$app/actions/PlaygroundActions';
 import PlaygroundState from './states/PlaygroundState';
 

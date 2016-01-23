@@ -1,8 +1,4 @@
 /**
- * @fileoverview Provide helper functions used to test state manager classes.
- */
-
-/**
  * Extend a given state class for testing and return its subclass.
  * @param {StateClass} StateClass - The state class to be extended.
  * @param {Object} initialState - The initial state of the instance.

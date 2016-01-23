@@ -1,6 +1,3 @@
-/**
- * @fileoverview Unit tests for PlaygroundState
- */
 import assert from 'power-assert';
 import { createTestState } from './_helper';
 import PlaygroundState from '$app/stores/states/PlaygroundState';
@@ -14,7 +11,7 @@ const TestPlaygroundState = createTestState(PlaygroundState, {
 });
 
 /**
- * PlaygroundState Spec
+ * @test {PlaygroundState}
  */
 describe('PlaygroundState', function() {
   let playground;
@@ -23,6 +20,7 @@ describe('PlaygroundState', function() {
     playground = new TestPlaygroundState();
   });
 
+  /** @test {PlaygroundState#constructor} */
   it('has an initial state', () => {
     const state = playground.getState();
     assert.deepEqual(state, {
