@@ -21,6 +21,8 @@
   "license": "MIT",
   "repository": "https://github.com/ryym/play-flex",
   "dependencies": {
+    "alt": "^0.18.1",
+    "alt-container": "^1.0.1",
     "immutable": "^3.7.6",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
