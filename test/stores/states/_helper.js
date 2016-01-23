@@ -4,9 +4,9 @@
  * @param {Object} initialState - The initial state of the instance.
  * @return {StateClass} The subclass of the given class.
  */
-export function createTestState(StateClass, initialState) {
+export function createTestState(StateClass) {
   class TestState extends StateClass {
-    constructor() {
+    constructor(initialState) {
       super();
       this.state = initialState;
     }
