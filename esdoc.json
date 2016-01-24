@@ -1,5 +1,5 @@
 {
-  "source": "./app",
+  "source": "./src",
   "destination": "./esdoc",
   "test": {
     "type": "mocha",

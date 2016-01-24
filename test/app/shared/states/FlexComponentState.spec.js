@@ -1,15 +1,15 @@
 import assert from 'power-assert';
-import FlexContainer from '$app/models/FlexContainer';
-import FlexItem from '$app/models/FlexItem';
-import PlaygroundState from '$app/stores/states/PlaygroundState';
+import FlexContainer from '$shared/models/FlexContainer';
+import FlexItem from '$shared/models/FlexItem';
+import FlexComponentState from '$shared/states/FlexComponentState';
 import { createTestState } from './_helper';
 
-const TestPlaygroundState = createTestState(PlaygroundState);
+const TestPlaygroundState = createTestState(FlexComponentState);
 
 /**
- * @test {PlaygroundState}
+ * @test {FlexComponentState}
  */
-describe('PlaygroundState', function() {
+describe('FlexComponentState', function() {
   const rootId = 'root-container';
   let rootContainer;
   let playground;
@@ -23,7 +23,7 @@ describe('PlaygroundState', function() {
     });
   });
 
-  /** @test {PlaygroundState#constructor} */
+  /** @test {FlexComponentState#constructor} */
   it('has an initial state', () => {
     const state = playground.getState();
     assert.deepEqual(state, {
@@ -33,7 +33,7 @@ describe('PlaygroundState', function() {
     });
   });
 
-  /** @test {PlaygroundState#addItem} */
+  /** @test {FlexComponentState#addItem} */
   describe('#addItem', () => {
     it('does nothing if the parent container id is not found', () => {
       const state = playground.getState();

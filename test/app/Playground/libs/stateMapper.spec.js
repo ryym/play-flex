@@ -1,8 +1,8 @@
 import assert from 'power-assert';
-import { mapComponents } from '$app/components/Playground/stateMapper';
+import { mapComponents } from '$app/Playground/libs/stateMapper';
 import {
   container, item, makeState
-} from './_helper';
+} from '../_helper';
 
 /**
  * @test Playground state mapper

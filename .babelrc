@@ -7,8 +7,12 @@
     "espower",
     ["module-alias", [
       {
-        "src": "./app",
+        "src": "./src/app",
         "expose": "$app"
+      },
+      {
+        "src": "./src/app/shared",
+        "expose": "$shared"
       }
     ]]
   ]

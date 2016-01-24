@@ -1,6 +1,6 @@
 import assert from 'power-assert';
-import FlexContainer from '$app/models/FlexContainer';
-import FlexItem from '$app/models/FlexItem';
+import FlexContainer from '$shared/models/FlexContainer';
+import FlexItem from '$shared/models/FlexItem';
 
 export function container(id, itemIds = []) {
   const fc = new FlexContainer(id);

@@ -5,7 +5,7 @@ const HtmlTemplatePlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const PATH = {
-  app: path.join(__dirname, 'app'),
+  src: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'build')
 };
 
@@ -14,7 +14,7 @@ module.exports = {
     extensions: ['', '.js', '.react.js']
   },
 
-  entry: PATH.app,
+  entry: PATH.src,
 
   output: {
     path: PATH.build,
@@ -30,7 +30,7 @@ module.exports = {
           'babel',
           'eslint'
         ],
-        include: PATH.app
+        include: PATH.src
       },
       {
         test: /\.scss$/,
@@ -39,7 +39,7 @@ module.exports = {
           'autoprefixer?browsers=last 2 versions',
           'sass'
         ]),
-        include: PATH.app
+        include: PATH.src
       }
     ]
   },
@@ -51,7 +51,7 @@ module.exports = {
 
   plugins: [
     new HtmlTemplatePlugin({
-      template: path.join(PATH.app, 'index.template.html'),
+      template: path.join(PATH.src, 'index.template.html'),
       inject: 'body'
     }),
 

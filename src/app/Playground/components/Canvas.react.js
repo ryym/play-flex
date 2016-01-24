@@ -1,6 +1,6 @@
 import React from 'react';
-import PlaygroundActions from '$app/actions/PlaygroundActions';
-import FlexItem from '$app/models/FlexItem';
+import FlexComponentActions from '$shared/actions/FlexComponentActions';
+import FlexItem from '$shared/models/FlexItem';
 
 let _itemId = 0;
 
@@ -46,6 +46,6 @@ export default class Canvas extends React.Component {
 
   addItem(containerId) {
     const item = new FlexItem(_itemId++);
-    PlaygroundActions.addItem({ item, containerId });
+    FlexComponentActions.addItem({ item, containerId });
   }
 }

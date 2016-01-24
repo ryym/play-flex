@@ -1,6 +1,6 @@
 import React from 'react';
-import Playground from './Playground';
-import StateInjector from './StateInjector';
+import Playground from './components/Playground';
+import StateInjector from './components/StateInjector';
 
 /**
  * Render playground page.
