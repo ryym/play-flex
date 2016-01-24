@@ -4,7 +4,7 @@
   "description": "Flexbox Playground",
   "scripts": {
     "webpack:lint": "eslint webpack.config.js --env node",
-    "lint": "eslint app",
+    "lint": "eslint src",
     "prebuild": "npm run webpack:lint",
     "predev": "npm run webpack:lint",
     "build": "webpack",
