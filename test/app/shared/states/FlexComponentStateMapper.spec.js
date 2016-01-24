@@ -1,6 +1,4 @@
 import assert from 'power-assert';
-import FlexContainer from '$shared/models/FlexContainer';
-import FlexItem from '$shared/models/FlexItem';
 import FlexComponentStateMapper from '$shared/states/FlexComponentStateMapper';
 import * as h from './_helper';
 

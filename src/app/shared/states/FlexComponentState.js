@@ -7,8 +7,9 @@
 export default class FlexComponentState {
   /**
    * Add a given item to the specified container.
-   * @param {FlexItem} item - A FlexItem to be added.
-   * @param {string} containerId - The parent container id.
+   * @param {Object} param
+   * @param {FlexItem} param.item - A FlexItem to be added.
+   * @param {string} param.containerId - The parent container id.
    * @return {void}
    */
   addItem({ item, containerId }) {

@@ -4,7 +4,7 @@ import FlexItem from '$shared/models/FlexItem';
 import FlexComponentState from '$shared/states/FlexComponentState';
 import * as h from './_helper';
 
-const TestPlaygroundState = h.createTestState(FlexComponentState);
+const TestFlexComponentState = h.createTestState(FlexComponentState);
 
 /**
  * @test {FlexComponentState}
@@ -12,11 +12,16 @@ const TestPlaygroundState = h.createTestState(FlexComponentState);
 describe('FlexComponentState', function() {
   const rootId = 'root-container';
   let rootContainer;
-  let playground;
+  let componentTree;
+
+  function run(execution) {
+    execution();
+    return componentTree.getState();
+  }
 
   beforeEach(() => {
     rootContainer = new FlexContainer(rootId);
-    playground = new TestPlaygroundState({
+    componentTree = new TestFlexComponentState({
       rootContainerId: rootId,
       containers: { [rootId]: rootContainer },
       items: {}
@@ -25,7 +30,7 @@ describe('FlexComponentState', function() {
 
   /** @test {FlexComponentState#constructor} */
   it('has an initial state', () => {
-    const state = playground.getState();
+    const state = componentTree.getState();
     assert.deepEqual(state, {
       rootContainerId: rootId,
       containers: { [rootId]: rootContainer },
@@ -36,30 +41,33 @@ describe('FlexComponentState', function() {
   /** @test {FlexComponentState#addItem} */
   describe('#addItem', () => {
     it('does nothing if the parent container id is not found', () => {
-      const state = playground.getState();
-      playground.addItem({
-        item: new FlexItem(''),
-        containerId: '__nowhere__'
+      const state = componentTree.getState();
+      const nextState = run(() => {
+        componentTree.addItem({
+          item: new FlexItem(''),
+          containerId: '__nowhere__'
+        });
       });
 
-      assert.deepEqual(playground.getState(), state);
+      assert.deepEqual(nextState, state);
     });
 
     it('adds a given item to items hash', () => {
       const item = new FlexItem('new-item');
-      playground.addItem({
-        item, containerId: rootId
+      const nextState = run(() => {
+        componentTree.addItem({
+          item, containerId: rootId
+        });
       });
 
-      const items = playground.getState().items;
-      assert.deepEqual(items, {
+      assert.deepEqual(nextState.items, {
         [item.getId()]: item
       });
     });
 
     it('adds a given item id to the parent container', () => {
       const item = new FlexItem('new-item');
-      playground.addItem({
+      componentTree.addItem({
         item, containerId: rootId
       });
 
