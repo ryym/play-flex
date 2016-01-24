@@ -1,8 +1,10 @@
 import React from 'react';
 import FlexComponentActions from '$shared/actions/FlexComponentActions';
 import FlexItem from '$shared/models/FlexItem';
+import FlexContainer from '$shared/models/FlexContainer';
 
 let _itemId = 0;
+let _containerId = 0;
 
 /**
  * Render a canvas where users put flex containers and items.
@@ -36,8 +38,12 @@ export default class Canvas extends React.Component {
   }
 
   mapItem(item, containerElements) {
+    const itemId = item.getId();
     return (
-      <li key={item.getId()}>
+      <li key={itemId}>
+        <button onClick={() => this.putContainer(itemId)}>
+          add container
+        </button>
         <div>item {item.getId()}</div>
         {containerElements}
       </li>
@@ -47,5 +53,12 @@ export default class Canvas extends React.Component {
   addItem(containerId) {
     const item = new FlexItem(_itemId++);
     FlexComponentActions.addItem({ item, containerId });
+  }
+
+  putContainer(itemId) {
+    const container = new FlexContainer(_containerId++);
+    FlexComponentActions.putContainer({
+      container, itemId
+    });
   }
 }
