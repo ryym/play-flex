@@ -1,3 +1,5 @@
 import { alt } from '$app/libs/alt';
 
-export default alt.generateActions();
+export default alt.generateActions(
+  'addItem'
+);
