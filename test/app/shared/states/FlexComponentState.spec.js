@@ -77,4 +77,76 @@ describe('FlexComponentState', function() {
       );
     });
   });
+
+  /** @test {FlexComponentState#putContainer} */
+  describe('#putContainer', () => {
+    const parentItemId = 'parent-item';
+
+    beforeEach(() => {
+      const parentItem = new FlexItem(parentItemId);
+      componentTree.getState().items[parentItemId] = parentItem;
+    });
+
+    it('does nothing if the parent item id is not found', () => {
+      const state = componentTree.getState();
+      const nextState = run(() => {
+        componentTree.putContainer({
+          container: new FlexContainer(''),
+          itemId: '__nowhere__'
+        });
+      });
+
+      assert.deepEqual(nextState, state);
+    });
+
+    it('adds the given container to containers hash', () => {
+      const container = new FlexContainer('new-container');
+      const nextState = run(() => {
+        componentTree.putContainer({
+          container, itemId: parentItemId
+        });
+      });
+
+      assert.deepEqual(nextState.containers, {
+        [container.getId()]: container,
+        [rootId]: rootContainer
+      });
+    });
+
+    it('puts the given container id to the parent item', () => {
+      const container = new FlexContainer('new-container');
+      const nextState = run(() => {
+        componentTree.putContainer({
+          container, itemId: parentItemId
+        });
+      });
+
+      const parentItem = nextState.items[parentItemId];
+      assert.equal(
+        parentItem.getContainerId(),
+        'new-container'
+      );
+    });
+
+    context('when the receiver item has a container already', () => {
+      beforeEach(() => {
+        const container = new FlexContainer('first');
+        const state = componentTree.getState();
+        state.items[parentItemId].putContainer(container);
+      });
+
+      it('does nothing', () => {
+        const container = new FlexContainer('second');
+        const state = componentTree.getState();
+        const nextState = run(() => {
+          componentTree.putContainer({
+            container, itemId: parentItemId
+          });
+        });
+
+        assert.deepEqual(nextState, state);
+      });
+
+    });
+  });
 });

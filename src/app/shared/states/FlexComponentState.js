@@ -26,4 +26,26 @@ export default class FlexComponentState {
       items, containers
     });
   }
+
+  /**
+   * Put a given container in the specified item.
+   * @param {Object} param
+   * @param {FlexContainer} param.container - A FlexContainer to be added.
+   * @param {string} param.itemId - The parent item id.
+   * @return {void}
+   */
+  putContainer({ container, itemId }) {
+    const { items, containers } = this.getState();
+    const parent = items[itemId];
+    if (parent === undefined || parent.hasContainer()) {
+      return;
+    }
+
+    const containerId = container.getId();
+    parent.putContainer(containerId);
+    containers[containerId] = container;
+    this.setState({
+      items, containers
+    });
+  }
 }
