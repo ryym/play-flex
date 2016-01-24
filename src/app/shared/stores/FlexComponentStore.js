@@ -1,15 +1,15 @@
-import { alt } from '$app/libs/alt';
-import FlexContainer from '$app/models/FlexContainer';
-import PlaygroundActions from '$app/actions/PlaygroundActions';
-import PlaygroundState from './states/PlaygroundState';
+import { alt } from '$shared/libs/alt';
+import FlexContainer from '$shared/models/FlexContainer';
+import FlexComponentActions from '$shared/actions/FlexComponentActions';
+import FlexComponentState from '$shared/states/FlexComponentState';
 
 /**
- * PlaygroundStore is a Alt store for Canvas component.
+ * FlexComponentStore is a Alt store managing flex component tree.
  */
-class PlaygroundStore extends PlaygroundState {
+class FlexComponentStore extends FlexComponentState {
   constructor() {
     super();
-    this.bindActions(PlaygroundActions);
+    this.bindActions(FlexComponentActions);
 
     const rootContainer = new FlexContainer('__root__');
     this.rootContainerId = rootContainer.getId();
@@ -24,4 +24,4 @@ class PlaygroundStore extends PlaygroundState {
   }
 }
 
-export default alt.createStore(PlaygroundStore, 'canvasStore');
+export default alt.createStore(FlexComponentStore, 'canvasStore');
