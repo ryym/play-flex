@@ -2,9 +2,9 @@ import assert from 'power-assert';
 import FlexContainer from '$shared/models/FlexContainer';
 import FlexItem from '$shared/models/FlexItem';
 import FlexComponentState from '$shared/states/FlexComponentState';
-import { createTestState } from './_helper';
+import * as h from './_helper';
 
-const TestPlaygroundState = createTestState(FlexComponentState);
+const TestPlaygroundState = h.createTestState(FlexComponentState);
 
 /**
  * @test {FlexComponentState}

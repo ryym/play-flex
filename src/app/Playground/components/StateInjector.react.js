@@ -1,7 +1,6 @@
 import React from 'react';
 import AltContainer from 'alt-container';
 import FlexComponentStore from '$shared/stores/FlexComponentStore';
-import * as stateMapper from '../libs/stateMapper';
 
 /**
  * Inject playground state to its children.
@@ -21,12 +20,7 @@ export default class StateInjector extends React.Component {
   }
 
   mapComponents() {
-    const state = FlexComponentStore.getState();
-    return (mapContainer, mapItem) => {
-      return stateMapper.mapComponents(
-        state, mapContainer, mapItem
-      );
-    };
+    return FlexComponentStore.getState().mapComponents;
   }
 }
 
