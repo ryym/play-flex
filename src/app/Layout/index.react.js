@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import Header from './components/Header';
 
 /**
  * Render common layout of this app.
