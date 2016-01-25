@@ -2,6 +2,7 @@
 export default class BoxTreeStateMapper {
   constructor(state) {
     this.state = state;
+    this.mapRecursively = this.mapRecursively.bind(this);
   }
 
   mapRecursively(mapper, childReducer) {

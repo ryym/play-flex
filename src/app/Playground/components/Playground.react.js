@@ -6,10 +6,10 @@ import Canvas from './Canvas';
  */
 export default class Playground extends React.Component {
   render() {
-    const { mapComponents } = this.props;
+    const { mapBoxes } = this.props;
     return (
       <div className="pg-playground">
-        <Canvas mapComponents={mapComponents} />
+        <Canvas mapBoxes={mapBoxes} />
       </div>
     );
   }

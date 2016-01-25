@@ -74,3 +74,21 @@ html, body {
   min-width: 100px;
   min-height: 100px;
 }
+
+.pg-canvas > .pg-canvas__flexbox {
+  height: 100%;
+  width: 100%;
+}
+
+.pg-canvas__flexbox {
+  border: 1px solid #66b;
+  border-radius: 5px;
+  display: flex;
+  align-items: flex-start;
+  overflow: auto;
+  flex-grow: 1;
+  width: 150px;
+  height: 150px;
+  min-width: 100px;
+  min-height: 100px;
+}
