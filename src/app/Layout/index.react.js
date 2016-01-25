@@ -7,9 +7,13 @@ import Header from './components/Header';
 export default class Layout extends React.Component {
   render() {
     return (
-      <div>
-        <Header />
-        {this.props.children}
+      <div className="layout">
+        <div className="layout-center">
+          <Header />
+          <div className="layout__main">
+            {this.props.children}
+          </div>
+        </div>
       </div>
     );
   }

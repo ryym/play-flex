@@ -8,8 +8,7 @@ export default class Playground extends React.Component {
   render() {
     const { mapComponents } = this.props;
     return (
-      <div className="playground">
-        playground
+      <div className="pg-playground">
         <Canvas mapComponents={mapComponents} />
       </div>
     );

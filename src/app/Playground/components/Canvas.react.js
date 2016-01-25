@@ -17,8 +17,7 @@ export default class Canvas extends React.Component {
     );
 
     return (
-      <div>
-        <div>canvas</div>
+      <div className="pg-canvas">
         {componentTree}
       </div>
     );
@@ -27,12 +26,14 @@ export default class Canvas extends React.Component {
   mapContainer(container, itemElements) {
     const containerId = container.getId();
     return (
-      <div>
-        <button onClick={() => this.addItem(containerId)}>
-          add item
-        </button>
+      <div className="pg-canvas__flex-container">
+        <div>
+          <button onClick={() => this.addItem(containerId)}>
+            add item
+          </button>
+        </div>
         <div>container {containerId}</div>
-        <ul>{itemElements}</ul>
+        {itemElements}
       </div>
     );
   }
@@ -40,13 +41,13 @@ export default class Canvas extends React.Component {
   mapItem(item, containerElements) {
     const itemId = item.getId();
     return (
-      <li key={itemId}>
+      <div key={item.getId()} className="pg-canvas__flex-item">
         <button onClick={() => this.putContainer(itemId)}>
           add container
         </button>
         <div>item {item.getId()}</div>
         {containerElements}
-      </li>
+      </div>
     );
   }
 
