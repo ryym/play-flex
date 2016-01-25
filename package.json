@@ -42,7 +42,7 @@
     "esdoc": "^0.4.3",
     "eslint": "^1.10.3",
     "eslint-loader": "^1.2.0",
-    "eslint-plugin-react": "^3.15.0",
+    "eslint-plugin-react": "3.16.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^1.7.0",
     "mocha": "^2.3.4",

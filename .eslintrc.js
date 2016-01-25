@@ -41,6 +41,7 @@ module.exports = {
 
     /* For JSX */
     "jsx-quotes": [2, "prefer-double"],
+    "react/jsx-equals-spacing": [2, "never"],
     "react/jsx-indent": [2, 2],
     "react/jsx-indent-props": [1, 2],
     "react/jsx-key": 1,
