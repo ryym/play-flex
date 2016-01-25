@@ -1,5 +1,3 @@
-import FlexContainer from '$shared/models/FlexContainer';
-import FlexItem from '$shared/models/FlexItem';
 import Flexbox from '$shared/models/Flexbox';
 
 /**
@@ -25,34 +23,6 @@ export function createTestState(StateClass) {
   }
 
   return TestState;
-}
-
-export function container(id, itemIds = []) {
-  const fc = new FlexContainer(id);
-  itemIds.forEach(id => fc.addItem(id));
-  return fc;
-}
-
-export function item(id, containerId) {
-  const fi = new FlexItem(id);
-  if (containerId !== null) {
-    fi.putContainer(containerId);
-  }
-  return fi;
-}
-
-export function makeState(def) {
-  function reduceComps(comps) {
-    return comps.reduce((cs, c) => {
-      cs[c.getId()] = c;
-      return cs;
-    }, {});
-  }
-  return {
-    rootContainerId: def.containers[0].getId(),
-    containers: reduceComps(def.containers),
-    items: reduceComps(def.items)
-  };
 }
 
 export function makeBoxTree(...boxIds) {
