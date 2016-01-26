@@ -1,65 +1,43 @@
 import React from 'react';
-import FlexComponentActions from '$shared/actions/FlexComponentActions';
-import FlexItem from '$shared/models/FlexItem';
-import FlexContainer from '$shared/models/FlexContainer';
+import BoxTreeActions from '$shared/actions/BoxTreeActions';
+import Flexbox from '$shared/models/Flexbox';
+import Box from './Box';
 
-let _itemId = 0;
-let _containerId = 0;
+let _boxId = 0;
 
 /**
  * Render a canvas where users put flex containers and items.
  */
 export default class Canvas extends React.Component {
-  render() {
-    const componentTree = this.props.mapComponents(
-      this.mapContainer.bind(this),
-      this.mapItem.bind(this)
-    );
+  constructor(props) {
+    super(props);
+    this.makeBox = this.makeBox.bind(this);
+    this.addChild = this.addChild.bind(this);
+  }
 
+  render() {
+    const { mapBoxes } = this.props;
     return (
       <div className="pg-canvas">
-        {componentTree}
+        {mapBoxes(this.makeBox)}
       </div>
     );
   }
 
-  mapContainer(container, itemElements) {
-    const containerId = container.getId();
+  makeBox(box, childBoxes) {
     return (
-      <div className="pg-canvas__flex-container">
-        <div>
-          <button onClick={() => this.addItem(containerId)}>
-            add item
-          </button>
-        </div>
-        <div>container {containerId}</div>
-        {itemElements}
-      </div>
+      <Box
+        key={box.getId()}
+        box={box}
+        addChild={this.addChild}
+      >
+        {childBoxes}
+      </Box>
     );
   }
 
-  mapItem(item, containerElements) {
-    const itemId = item.getId();
-    return (
-      <div key={item.getId()} className="pg-canvas__flex-item">
-        <button onClick={() => this.putContainer(itemId)}>
-          add container
-        </button>
-        <div>item {item.getId()}</div>
-        {containerElements}
-      </div>
-    );
-  }
-
-  addItem(containerId) {
-    const item = new FlexItem(_itemId++);
-    FlexComponentActions.addItem({ item, containerId });
-  }
-
-  putContainer(itemId) {
-    const container = new FlexContainer(_containerId++);
-    FlexComponentActions.putContainer({
-      container, itemId
-    });
+  addChild(parentId) {
+    const box = new Flexbox(_boxId++);
+    BoxTreeActions.addBox({ box, parentId });
   }
 }

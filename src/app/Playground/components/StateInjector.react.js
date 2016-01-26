@@ -1,6 +1,6 @@
 import React from 'react';
 import AltContainer from 'alt-container';
-import FlexComponentStore from '$shared/stores/FlexComponentStore';
+import BoxTreeStore from '$shared/stores/BoxTreeStore';
 
 /**
  * Inject playground state to its children.
@@ -9,9 +9,9 @@ export default class StateInjector extends React.Component {
   render() {
     return (
       <AltContainer
-        stores={[FlexComponentStore]}
+        stores={[BoxTreeStore]}
         inject={{
-          mapComponents: this.mapComponents
+          mapBoxes: this.mapBoxes
         }}
       >
         {this.props.children}
@@ -19,8 +19,8 @@ export default class StateInjector extends React.Component {
     );
   }
 
-  mapComponents() {
-    return FlexComponentStore.getState().mapComponents;
+  mapBoxes() {
+    return BoxTreeStore.getState().mapRecursively;
   }
 }
 

@@ -1,5 +1,4 @@
-import FlexContainer from '$shared/models/FlexContainer';
-import FlexItem from '$shared/models/FlexItem';
+import Flexbox from '$shared/models/Flexbox';
 
 /**
  * Extend a given state class for testing and return its subclass.
@@ -19,37 +18,25 @@ export function createTestState(StateClass) {
     }
 
     setState(nextState) {
-      this.state = nextState;
+      Object.assign(this.state, nextState);
     }
   }
 
   return TestState;
 }
 
-export function container(id, itemIds = []) {
-  const fc = new FlexContainer(id);
-  itemIds.forEach(id => fc.addItem(id));
-  return fc;
-}
-
-export function item(id, containerId) {
-  const fi = new FlexItem(id);
-  if (containerId !== null) {
-    fi.putContainer(containerId);
-  }
-  return fi;
-}
-
-export function makeState(def) {
-  function reduceComps(comps) {
-    return comps.reduce((cs, c) => {
-      cs[c.getId()] = c;
-      return cs;
-    }, {});
-  }
+export function makeBoxTree(...boxIds) {
+  const boxes = {};
+  boxIds.forEach(ids => {
+    const [parent, childs] = ids;
+    boxes[parent] = new Flexbox(parent);
+    (childs || []).forEach(child => {
+      boxes[parent].addChild(child);
+    });
+  });
   return {
-    rootContainerId: def.containers[0].getId(),
-    containers: reduceComps(def.containers),
-    items: reduceComps(def.items)
+    boxes,
+    rootId: boxIds[0][0]
   };
 }
+
