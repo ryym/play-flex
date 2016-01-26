@@ -46,13 +46,28 @@ html, body {
   width: 95%;
   max-width: 1200px;
   display: flex;
+  flex-direction: column;
+}
+
+.pg-playground__draggable {
+  flex-grow: 0.1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pg-playground__draggable-box {
+  background-color: #f65a11;
+  color: #fff;
+  padding: 3px;
+  cursor: pointer;
 }
 
 .pg-canvas {
-  flex-grow: 1;
+  flex-grow: 2.5;
   border: 1px solid #b88;
   max-width: 100%;
   max-height: 100%;
+  display: flex;
 }
 
 .pg-canvas > .pg-canvas__flexbox {
