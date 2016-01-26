@@ -1,6 +1,7 @@
 import React from 'react';
 import BoxTreeActions from '$shared/actions/BoxTreeActions';
 import Flexbox from '$shared/models/Flexbox';
+import Box from './Box';
 
 let _boxId = 0;
 
@@ -8,27 +9,30 @@ let _boxId = 0;
  * Render a canvas where users put flex containers and items.
  */
 export default class Canvas extends React.Component {
+  constructor(props) {
+    super(props);
+    this.makeBox = this.makeBox.bind(this);
+    this.addChild = this.addChild.bind(this);
+  }
+
   render() {
-    const boxTree = this.props.mapBoxes(this.mapBox.bind(this));
+    const { mapBoxes } = this.props;
     return (
       <div className="pg-canvas">
-        {boxTree}
+        {mapBoxes(this.makeBox)}
       </div>
     );
   }
 
-  mapBox(box, childElements) {
-    const boxId = box.getId();
+  makeBox(box, childBoxes) {
     return (
-      <div className="pg-canvas__flexbox">
-        <div>
-          <button onClick={() => this.addChild(boxId)}>
-            add
-          </button>
-        </div>
-        <div>box {boxId}</div>
-        {childElements}
-      </div>
+      <Box
+        key={box.getId()}
+        box={box}
+        addChild={this.addChild}
+      >
+        {childBoxes}
+      </Box>
     );
   }
 
