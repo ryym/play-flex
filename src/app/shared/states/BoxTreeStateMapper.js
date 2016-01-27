@@ -6,7 +6,17 @@ export default class BoxTreeStateMapper {
     this.mapFromParent = this.mapFromParent.bind(this);
   }
 
+  /**
+   * Traverse box tree. A given mapper is applied from the
+   * most deeper child to the root box.
+   * @param {function} mapper - The mapper of each box.
+   * @param {function} childReducer - The reducer of childs (optional).
+   * @return {*} A tree consists of each mapped value.
+   */
   mapRecursively(mapper, childReducer) {
+    if (typeof childReducer !== 'function') {
+      childReducer = (childs) => childs;
+    }
     const root = this.state.boxes[this.state.rootId];
     return this._mapRecursively(root, mapper, childReducer);
   }
@@ -16,10 +26,7 @@ export default class BoxTreeStateMapper {
       const child = this.state.boxes[id];
       return this._mapRecursively(child, mapper, childReducer);
     });
-    if (typeof childReducer === 'function') {
-      return mapper(box, childReducer(childs));
-    }
-    return mapper(box, childs);
+    return mapper(box, childReducer(childs));
   }
 
   /**
