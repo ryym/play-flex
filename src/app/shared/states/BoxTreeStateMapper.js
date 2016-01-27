@@ -36,10 +36,10 @@ export default class BoxTreeStateMapper {
    * @param {*} props - The prop passed to the root box.
    * @return {*} A tree consists of each mapped value.
    * @example
-   * function printEachBox(box, parent, printEachBox, getChildsOf) {
+   * function printEachBox(box, parent, eachChilds) {
    *   const boxId = box.getId();
-   *   const mappedChilds = getChildsOf(box).map(child => {
-   *     return printEachBox(child, boxId, printEachBox, getChildsOf);
+   *   eachChilds(box, child => {
+   *     printEachBox(child, boxId, eachChilds);
    *   });
    *   console.log(`The parent of ${boxId} is ${parent}!`);
    * }
@@ -49,7 +49,12 @@ export default class BoxTreeStateMapper {
    */
   mapFromParent(mapBox, props) {
     const root = this.state.boxes[this.state.rootId];
-    return mapBox(root, props, mapBox, this.getChildsOf.bind(this));
+    const mapChilds = (box, mapper) => {
+      return this.getChildsOf(box).map(child =>
+        mapper(child, mapBox)
+      );
+    };
+    return mapBox(root, props, mapChilds);
   }
 
   getChildsOf(box) {

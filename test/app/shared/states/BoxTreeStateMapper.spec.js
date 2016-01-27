@@ -88,14 +88,14 @@ describe('BoxTreeStateMapper', function() {
 
   /** @test {BoxTreeStateMapper#mapFromParent} */
   describe('#mapFromParent', () => {
-    function mapBox(box, parent, mapBox, getChildsOf) {
-      const data = getChildsOf(box).reduce((data, child) => {
-        return Object.assign(
-          data, mapBox(child, box.getId(), mapBox, getChildsOf)
-        );
-      }, { p: parent });
+    function mapBox(box, parent, eachChilds) {
+      const data = { p: parent };
+      const boxId = box.getId();
+      eachChilds(box, child => {
+        Object.assign(data, mapBox(child, boxId, eachChilds));
+      });
       return {
-        [box.getId()]: data
+        [boxId]: data
       };
     }
 
