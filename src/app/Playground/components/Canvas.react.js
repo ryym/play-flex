@@ -11,7 +11,7 @@ let _boxId = 0;
 export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
-    this.makeBox = this.makeBox.bind(this);
+    this.renderBox = this.renderBox.bind(this);
     this.addChild = this.addChild.bind(this);
   }
 
@@ -19,12 +19,12 @@ export default class Canvas extends React.Component {
     const { mapBoxes } = this.props;
     return (
       <div className="pg-canvas">
-        {mapBoxes(this.makeBox)}
+        {mapBoxes(this.renderBox)}
       </div>
     );
   }
 
-  makeBox(box, childBoxes) {
+  renderBox(box, childBoxes) {
     return (
       <Box
         key={box.getId()}
